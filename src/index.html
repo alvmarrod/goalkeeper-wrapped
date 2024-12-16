@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isabot Wrapped 2024</title>
+    <link rel="stylesheet" href="style.css">
+    <audio id="background-music" src="audio/champions_short.mp3" ></audio> <!-- Audio de fondo: autoplay -->
+</head>
+<body>
+    <div id="audio-control">
+        <button id="audio-control-button" onclick="toggleAudio()">
+            <img src="images/icons8-pause-100.png" alt="Audio On" id="audio-on" class="audio-control" style="display: none;">
+            <img src="images/icons8-play-100.png" alt="Audio Off" id="audio-off" class="audio-control">
+        </button>
+    </div>
+
+    <div class="header">
+        <img src="images/Isabel_final.png" alt="Header Image" class="header-image">
+    </div>
+
+    <div class="title">
+        <h2>Isabot Wrapped 2024</h2>
+    </div>
+
+    <div id="content">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="js/javascript.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async (event) => {
+            await generateGraphs("content");
+
+            const audio = document.getElementById('background-music');
+            const audioControlOn = document.getElementById('audio-on');
+            const audioControlOff = document.getElementById('audio-off');
+
+            // Intentar reproducir el audio automáticamente
+            audio.play().catch(error => {
+                console.error('Error al reproducir el audio automáticamente:', error);
+            });
+
+            window.toggleAudio = function() {
+                if (audio.paused) {
+                    audio.play();
+                    audioControlOn.style.display = 'flex';
+                    audioControlOff.style.display = 'none';
+                } else {
+                    audio.pause();
+                    audioControlOn.style.display = 'none';
+                    audioControlOff.style.display = 'flex';
+                }
+            };
+
+        });
+    </script>
+</body>
+</html>
